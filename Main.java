@@ -32,8 +32,6 @@ public class Main {
 
 
     private static boolean solve(int a, int b, int c, int d, int e, int f, int g){
-        // boolean value to track whether we have found the solution
-        boolean temp;
 
         // Found the solution
         if( (e == 3) && (f == 3) && (a == 0) && (b == 0) && (c == 0) && (d == 0) && (g == 0) ) return true;
@@ -52,29 +50,24 @@ public class Main {
 
         // Otherwise, try all the possible solutions, one at a time, until one leads to a solution
         else{
-            // Empty out the boat and see if we have found the solution
-            temp = solve(a, b, c, d, e, f, g);
-            // temp = false;
-            // temp = solve(a, b, 0, 0, e, f, g);
-
 
             // Different moves we can try when "g = 1"
-            if(!temp) solve(a-2, b, c+2, d, e, f, 0);
-            if(!temp) solve(a, b-2, c, d+2, e, f, 0);
-            if(!temp) solve(a-1, b-1, c+1, d+1, e, f, 0);
-            if(!temp) solve(a-1, b, c+1, d, e, f, 0);
-            if(!temp) solve(a, b-1, c, d+1, e, f, 0);
+            if(solve(a-2, b, c+2, d, e, f, 0)) return true;
+            if(solve(a, b-2, c, d+2, e, f, 0)) return true;
+            if(solve(a-1, b-1, c+1, d+1, e, f, 0)) return true;
+            if(solve(a-1, b, c+1, d, e, f, 0)) return true;
+            if(solve(a, b-1, c, d+1, e, f, 0)) return true;
 
 
             // Different moves we can try when "g = 0"
-            if(!temp) solve(a, b, c-2, d, e+2, f, 1);
-            if(!temp) solve(a, b, c, d-2, e, f+2, 1);
-            if(!temp) solve(a, b, c-1, d-1, e+1, f+1, 1);
-            if(!temp) solve(a, b, c-1, d, e+1, f, 1);
-            if(!temp) solve(a, b, c, d-1, e, f+1, 1);
+            if(solve(a, b, c-2, d, e+2, f, 1)) return true;
+            if(solve(a, b, c, d-2, e, f+2, 1)) return true;
+            if(solve(a, b, c-1, d-1, e+1, f+1, 1)) return true;
+            if(solve(a, b, c-1, d, e+1, f, 1)) return true;
+            if(solve(a, b, c, d-1, e, f+1, 1)) return true;
         }
 
-        return temp;
+        return false;
     }
 
 
